@@ -364,7 +364,7 @@
             <useXO>0</useXO>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>NRF51 DEBUG_NRF_USER BLE_STACK_SUPPORT_REQD BOARD_NRF6310 ENABLE_DEBUG_LOG_SUPPORT</Define>
+              <Define>NRF51 DEBUG_NRF_USER BLE_STACK_SUPPORT_REQD BOARD_PCA10001 ENABLE_DEBUG_LOG_SUPPORT</Define>
               <Undefine></Undefine>
               <IncludePath>..;..\..\..\..\..\Include;..\..\..\..\..\Include\app_common;..\Include_s130\ble;..\Include_s130\ble\device_manager;..\Include_s130\ble\ble_services;..\..\..\..\..\Include\s130;..\..\..\..\..\include\boards;..\..\..\..\..\include\sd_common;..\..\..\..\..\Include\ext_sensors;..\..\..\..\..\Include\sdk;..\inc_s130;..\..\..\..\..\Include\ble\ble_services;..\..\..\..\..\Include\ble</IncludePath>
             </VariousControls>
