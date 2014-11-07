@@ -63,8 +63,6 @@
 #include "ble_hci.h"
 #include "nrf_delay.h"
 
-// Use only development kit, PCA10001
-
 // Peripheral settings
 #define PERIPHERAL_ADV_LED_PIN_NO                   LED_6                                          /**< Is on when device is scanning. */
 #define PERIPHERAL_CONNECTED_LED_PIN_NO             LED_5                                          /**< Is on when device has connected. */
@@ -221,7 +219,7 @@ static void scan_start(void);
 
 // WARNING: The following macro MUST be un-defined (by commenting out the definition) if the user
 // does not have a nRF6350 Display unit. If this is not done, the application will not work.
-//#define APPL_LCD_PRINT_ENABLE                                     /**< In case you do not have a functional display unit, disable this flag and observe trace on UART. */
+#define APPL_LCD_PRINT_ENABLE                                     /**< In case you do not have a functional display unit, disable this flag and observe trace on UART. */
 
 #ifdef APPL_LCD_PRINT_ENABLE
 
