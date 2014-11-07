@@ -64,10 +64,6 @@
 #include "nrf_delay.h"
 
 // Use only development kit, PCA10001
-#define LED_7 LED_0
-#define LED_6 LED_1
-#define LED_5 LED_1
-
 
 // Peripheral settings
 #define PERIPHERAL_ADV_LED_PIN_NO                   LED_6                                          /**< Is on when device is scanning. */
