@@ -63,6 +63,8 @@
 #include "ble_hci.h"
 #include "nrf_delay.h"
 
+// Use only development kit, PCA10001
+
 // Peripheral settings
 #define PERIPHERAL_ADV_LED_PIN_NO                   LED_6                                          /**< Is on when device is scanning. */
 #define PERIPHERAL_CONNECTED_LED_PIN_NO             LED_5                                          /**< Is on when device has connected. */
