@@ -63,20 +63,15 @@
 #include "ble_hci.h"
 #include "nrf_delay.h"
 
-// Use only development kit, PCA10001
-#define LED_7 LED_0
-#define LED_6 LED_1
-#define LED_5 LED_1
-
 
 // Peripheral settings
-#define PERIPHERAL_ADV_LED_PIN_NO                   LED_6                                          /**< Is on when device is scanning. */
-#define PERIPHERAL_CONNECTED_LED_PIN_NO             LED_5                                          /**< Is on when device has connected. */
+#define PERIPHERAL_ADV_LED_PIN_NO                   LED_0                                          /**< Is on when device is scanning. */
+#define PERIPHERAL_CONNECTED_LED_PIN_NO             LED_0                                          /**< Is on when device has connected. */
 
-#define PERIPHERAL_BONDMNGR_DELETE_BUTTON_PIN_NO   BUTTON_7
+#define PERIPHERAL_BONDMNGR_DELETE_BUTTON_PIN_NO   BUTTON_1
 
-#define PERIPHERAL_DEVICE_NAME                          "S130"                               /**< Name of device. Will be included in the advertising data. */
-#define PERIPHERAL_MANUFACTURER_NAME                    "NordicSemiconductor"                      /**< Manufacturer. Will be passed to Device Information Service. */
+#define PERIPHERAL_DEVICE_NAME                          "S130_GG"                               /**< Name of device. Will be included in the advertising data. */
+#define PERIPHERAL_MANUFACTURER_NAME                    "Gamnes"                      /**< Manufacturer. Will be passed to Device Information Service. */
 #define PERIPHERAL_APP_ADV_INTERVAL                     40                                         /**< The advertising interval (in units of 0.625 ms. This value corresponds to 25 ms). */
 #define PERIPHERAL_APP_ADV_TIMEOUT_IN_SECONDS           0 //180                                        /**< The advertising timeout in units of seconds. */
 
@@ -144,13 +139,14 @@ static app_timer_id_t                        m_peripheral_sensor_contact_timer_i
 static bool                                  m_peripheral_start_advertising = false;                        /**< Variable setting if advertising should start or not. */
 static bool                                  m_central_is_scanning          = false;                        /**< Variable telling if the central is scanning or not. */
 
-// Central settings
+
+
+// ##### Central settings ####
 
 #define BOND_DELETE_ALL_BUTTON_ID  BUTTON_1                           /**< Button used for deleting all bonded centrals during startup. */
 
-#define SCAN_LED_PIN_NO                  LED_0                                          /**< Is on when device is scanning. */
+#define SCAN_LED_PIN_NO                  LED_1                                          /**< Is on when device is scanning. */
 #define CONNECTED_LED_PIN_NO             LED_1                                          /**< Is on when device has connected. */
-#define ASSERT_LED_PIN_NO                LED_7                                          /**< Is on when application has asserted. */
 #define RSSI_CRITERIA                    -50                         /**< Minimum RSSI value for peer peripheral. */        
 
 #define APPL_LOG                         app_trace_log                                  /**< Debug logger macro that will be used in this file to do logging of debug information over UART. */
@@ -252,7 +248,8 @@ static void scan_start(void);
 void app_error_handler(uint32_t error_code, uint32_t line_num, const uint8_t * p_file_name)
 {
     APPL_LOG("[APPL]: ASSERT: %s, %d, error 0x%08x\r\n", p_file_name, line_num, error_code);
-    nrf_gpio_pin_set(ASSERT_LED_PIN_NO);
+    nrf_gpio_pin_set(LED_0);
+    nrf_gpio_pin_set(LED_1);
 
     // This call can be used for debug purposes during development of an application.
     // @note CAUTION: Activating this code will write the stack to flash on an error.
@@ -740,18 +737,14 @@ static void device_manager_init(void)
 }
 
 
-/**@brief Function for the LEDs initialization.
+/**@brief Function for the LEDs initialization. 
  *
  * @details Initializes all LEDs used by this application.
  */
 static void leds_init(void)
 {
-    nrf_gpio_cfg_output(SCAN_LED_PIN_NO);
-    nrf_gpio_cfg_output(CONNECTED_LED_PIN_NO);
-    nrf_gpio_cfg_output(ASSERT_LED_PIN_NO);
-    
-    nrf_gpio_cfg_output(PERIPHERAL_ADV_LED_PIN_NO);
-    nrf_gpio_cfg_output(PERIPHERAL_CONNECTED_LED_PIN_NO);
+    nrf_gpio_cfg_output(LED_0);
+    nrf_gpio_cfg_output(LED_1);
 }
 
 
@@ -763,26 +756,6 @@ static void buttons_init(void)
     nrf_gpio_cfg_sense_input(BOND_DELETE_ALL_BUTTON_ID,
                              BUTTON_PULL,
                              NRF_GPIO_PIN_SENSE_LOW);
-}
-
-
-/** @brief Function for the initialization of the nRF 6350 display.
- */
-void nrf6350_init(void)
-{
-#ifdef APPL_LCD_PRINT_ENABLE
-    bool success;
-
-    success = nrf6350_lcd_init();
-    if (success)
-    {
-        success = nrf6350_lcd_on();
-        APP_ERROR_CHECK_BOOL(success);
-
-        success = nrf6350_lcd_set_contrast(LCD_CONTRAST_HIGH);
-        APP_ERROR_CHECK_BOOL(success);
-    }
-#endif // APPL_LCD_PRINT_ENABLE
 }
 
 
@@ -1409,7 +1382,6 @@ int main(void)
     app_trace_init();
     leds_init();
     buttons_init();
-    nrf6350_init();
     ble_stack_init();
     device_manager_init();
     db_discovery_init();
