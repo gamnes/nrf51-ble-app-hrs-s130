@@ -996,10 +996,10 @@ static void scan_start(void)
  */
 static void battery_level_update(void)
 {
-    uint32_t err_code;
-    uint8_t  battery_level;
+    //uint32_t err_code;
+    //uint8_t  battery_level;
 
-    battery_level = (uint8_t)ble_sensorsim_measure(&m_peripheral_battery_sim_state, &m_peripheral_battery_sim_cfg);
+    //battery_level = (uint8_t)ble_sensorsim_measure(&m_peripheral_battery_sim_state, &m_peripheral_battery_sim_cfg);
 
     if(m_peripheral_conn_handle != BLE_CONN_HANDLE_INVALID)
     {
@@ -1042,12 +1042,12 @@ static void battery_level_meas_timeout_handler(void * p_context)
 static void heart_rate_meas_timeout_handler(void * p_context)
 {
     static uint32_t cnt = 0;
-    uint32_t        err_code;
-    uint16_t        heart_rate;
+    //uint32_t        err_code;
+    //uint16_t        heart_rate;
 
     UNUSED_PARAMETER(p_context);
 
-    heart_rate = (uint16_t)ble_sensorsim_measure(&m_peripheral_heart_rate_sim_state, &m_peripheral_heart_rate_sim_cfg);
+    //heart_rate = (uint16_t)ble_sensorsim_measure(&m_peripheral_heart_rate_sim_state, &m_peripheral_heart_rate_sim_cfg);
 
     cnt++;
     

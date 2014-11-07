@@ -106,7 +106,7 @@ static void on_write(ble_hrs_t * p_hrs, ble_evt_t * p_ble_evt)
 
 static void on_peer_peripheral_hvx(ble_hrs_t * p_hrs, ble_evt_t * p_ble_evt)
 {
-     uint32_t err_code;
+     //uint32_t err_code;
 
     // Send value if connected and notifying
     if (p_hrs->conn_handle != BLE_CONN_HANDLE_INVALID)
@@ -124,7 +124,7 @@ static void on_peer_peripheral_hvx(ble_hrs_t * p_hrs, ble_evt_t * p_ble_evt)
         hvx_params.p_len  = &p_ble_evt->evt.gattc_evt.params.hvx.len; 
         hvx_params.p_data = &p_ble_evt->evt.gattc_evt.params.hvx.data[0]; 
 
-        err_code = sd_ble_gatts_hvx(p_hrs->conn_handle, &hvx_params);
+        //err_code = sd_ble_gatts_hvx(p_hrs->conn_handle, &hvx_params);
         // The error code should preferably be handled
     }
 }

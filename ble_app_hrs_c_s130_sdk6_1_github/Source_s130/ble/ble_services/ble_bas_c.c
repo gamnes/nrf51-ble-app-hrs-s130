@@ -264,7 +264,7 @@ uint32_t ble_bas_c_init(ble_bas_c_t * p_ble_bas_c, ble_bas_c_init_t * p_ble_bas_
 
 static void on_peer_central_write(ble_bas_c_t * p_ble_bas_c, const ble_evt_t * p_ble_evt)
 {
-    uint32_t                     err_code;
+    //uint32_t                     err_code;
     ble_gattc_write_params_t     *p_write_params;  
     
     
@@ -277,7 +277,7 @@ static void on_peer_central_write(ble_bas_c_t * p_ble_bas_c, const ble_evt_t * p
         p_write_params->offset   =  p_ble_evt->evt.gatts_evt.params.write.offset;
         p_write_params->p_value  = (uint8_t *) p_ble_evt->evt.gatts_evt.params.write.data;
         p_write_params->write_op = BLE_GATT_OP_WRITE_CMD; 
-        err_code = sd_ble_gattc_write(p_ble_bas_c->conn_handle,p_write_params);
+        //err_code = sd_ble_gattc_write(p_ble_bas_c->conn_handle,p_write_params);
         // The error code should preferably be handled.
         
     }
