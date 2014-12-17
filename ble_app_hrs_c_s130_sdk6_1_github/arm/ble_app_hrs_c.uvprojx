@@ -519,6 +519,16 @@
               <FileType>1</FileType>
               <FilePath>.\..\main.c</FilePath>
             </File>
+            <File>
+              <FileName>ble_broadcaster.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\ble_broadcaster.c</FilePath>
+            </File>
+            <File>
+              <FileName>ble_observer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\ble_observer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1153,6 +1163,16 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\..\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>ble_broadcaster.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\ble_broadcaster.c</FilePath>
+            </File>
+            <File>
+              <FileName>ble_observer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\ble_observer.c</FilePath>
             </File>
           </Files>
         </Group>

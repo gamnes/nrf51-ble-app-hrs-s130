@@ -634,7 +634,8 @@ int main(void)
     // Start scanning for peripherals and initiate connection
     // with devices that advertise Heart Rate UUID.
     scan_start();
-    m_peripheral_start_advertising = false;
+    m_peripheral_start_advertising = true;
+    m_central_is_scanning = false;
     for (;;)
     {
         power_manage();
