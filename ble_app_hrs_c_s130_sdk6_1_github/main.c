@@ -30,6 +30,8 @@
  * This file contains the source code for a sample heart rate collector.
  */
 
+
+
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
@@ -612,6 +614,7 @@ static void peripheral_services_init(void)
 }
 
 
+#include "Ethernet.h"
 
 int main(void)
 {   
