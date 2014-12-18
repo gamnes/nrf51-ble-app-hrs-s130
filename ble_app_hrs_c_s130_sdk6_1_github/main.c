@@ -618,6 +618,9 @@ static void peripheral_services_init(void)
 
 int main(void)
 {   
+    uint8_t mac[] = {
+          0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
+    };
     
     IPAddress myIP;
     //IPAddress_new(&myIP);

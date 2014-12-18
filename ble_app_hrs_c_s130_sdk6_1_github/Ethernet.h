@@ -14,6 +14,7 @@
 #define ETHERNET_H
 
 #include "IPAddress.h"
+#include "EthernetServer.h"
 
 
 
