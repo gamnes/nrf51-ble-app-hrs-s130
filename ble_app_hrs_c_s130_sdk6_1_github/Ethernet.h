@@ -16,6 +16,7 @@
 #include "IPAddress.h"
 #include "EthernetServer.h"
 #include "Dhcp.h"
+#include "w5100.h"
 
 #define MAX_SOCK_NUM 4
 
