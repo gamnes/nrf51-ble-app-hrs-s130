@@ -37,6 +37,7 @@ void EthernetClass_begin_with_localIP_and_dnsServer_and_gateway_and_subnet(
             IPAddress gateway, 
             IPAddress subnet
             ) {
+    
     /*
                  W5100.init();
   SPI.beginTransaction(SPI_ETHERNET_SETTINGS);

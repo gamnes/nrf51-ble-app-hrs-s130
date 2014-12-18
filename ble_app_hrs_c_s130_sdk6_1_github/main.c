@@ -638,7 +638,6 @@ int main(void)
     EthernetClass_begin_with_localIP(&Ethernet, mac, ip);  // Ethernet is defined globally in Ethernet.h
     
     
-    
     // BLUETOOTH CODE:
     
     // Initialization of various modules.
