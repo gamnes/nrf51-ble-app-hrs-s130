@@ -618,6 +618,11 @@ static void peripheral_services_init(void)
 
 int main(void)
 {   
+    
+    IPAddress myIP;
+    //IPAddress_new(&myIP);
+    IPAddress_new_with_octets(&myIP, 192, 168, 1, 177);
+    
     // Initialization of various modules.
     uint32_t err_code;
     
