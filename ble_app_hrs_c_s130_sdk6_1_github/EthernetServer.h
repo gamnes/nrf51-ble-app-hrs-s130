@@ -13,8 +13,18 @@
 #ifndef ETHERNETSERVER_H
 #define ETHERNETSERVER_H
 
-//#include "Server.h"
+//#include "Server.h" Only creates class which includes print function from print class...?
 
+// Class ethernetserver
+typedef struct {
+    uint16_t _port;
+} EthernetServer;
+
+
+// Implementation should be moved to .c file
+void EthernetServer_new(EthernetServer *ethServ, uint16_t port) {
+    ethServ->_port = port;
+}
 
 
 

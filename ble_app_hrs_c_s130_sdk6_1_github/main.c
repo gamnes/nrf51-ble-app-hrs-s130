@@ -618,13 +618,28 @@ static void peripheral_services_init(void)
 
 int main(void)
 {   
+    
+    // ETHERNET CODE:
     uint8_t mac[] = {
           0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
     };
     
-    IPAddress myIP;
+    IPAddress ip;
     //IPAddress_new(&myIP);
-    IPAddress_new_with_octets(&myIP, 192, 168, 1, 177);
+    IPAddress_new_with_octets(&ip, 192, 168, 1, 177);
+    
+    EthernetServer server;
+    EthernetServer_new(&server, 80);
+    
+    // Opens a serial communication port with 9600 baud
+    
+    // Starts the Ethernet connection and the server
+    // Ethernet.begin(mac, ip);
+    EthernetClass_begin_with_localIP(&Ethernet, mac, ip);  // Ethernet is defined globally in Ethernet.h
+    
+    
+    
+    // BLUETOOTH CODE:
     
     // Initialization of various modules.
     uint32_t err_code;

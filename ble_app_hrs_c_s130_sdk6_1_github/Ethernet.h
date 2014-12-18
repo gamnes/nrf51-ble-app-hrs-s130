@@ -15,10 +15,62 @@
 
 #include "IPAddress.h"
 #include "EthernetServer.h"
+#include "Dhcp.h"
+
+#define MAX_SOCK_NUM 4
+
+typedef struct {
+    IPAddress _dnsServerAddress;
+    DhcpClass* _dhcp; // Not implemented yet
+    
+    uint8_t _state[MAX_SOCK_NUM];
+    uint16_t _server_port[MAX_SOCK_NUM];
+} EthernetClass;
 
 
+void EthernetClass_begin_with_localIP_and_dnsServer_and_gateway_and_subnet(
+            EthernetClass *ethernet, 
+            uint8_t *mac_address, 
+            IPAddress local_ip, 
+            IPAddress dns_server, 
+            IPAddress gateway, 
+            IPAddress subnet
+            ) {
+    /*
+                 W5100.init();
+  SPI.beginTransaction(SPI_ETHERNET_SETTINGS);
+  W5100.setMACAddress(mac);
+  W5100.setIPAddress(local_ip.raw_address());
+  W5100.setGatewayIp(gateway.raw_address());
+  W5100.setSubnetMask(subnet.raw_address());
+  SPI.endTransaction();
+  _dnsServerAddress = dns_server;
+                */
+}
+
+void EthernetClass_begin_with_localIP_and_dnsServer_and_gateway(EthernetClass *ethernet, uint8_t *mac_address, IPAddress local_ip, IPAddress dns_server, IPAddress gateway) {
+    IPAddress subnet;
+    IPAddress_new_with_octets(&subnet, 255, 255, 255, 0);
+    EthernetClass_begin_with_localIP_and_dnsServer_and_gateway_and_subnet(ethernet, mac_address, local_ip, dns_server, gateway, subnet);
+}
+
+void EthernetClass_begin_with_localIP_and_dnsServer(EthernetClass *ethernet, uint8_t *mac_address, IPAddress local_ip, IPAddress dns_server) {
+    // Assumes the gateway will be the machine on the same network as the local IP but with last octet being '1'
+    IPAddress gateway = local_ip;
+    gateway._address[3] = 1;
+    EthernetClass_begin_with_localIP_and_dnsServer_and_gateway(ethernet, mac_address, local_ip, dns_server, gateway);
+}
+
+void EthernetClass_begin_with_localIP(EthernetClass *ethernet, uint8_t *mac_address, IPAddress local_ip) {
+    // Assumes the DNS server will be the machine on the same network as the local IP but with last octet being '1'
+    IPAddress dns_server = local_ip;
+    dns_server._address[3] = 1;
+    EthernetClass_begin_with_localIP_and_dnsServer(ethernet, mac_address, local_ip, dns_server);
+}
 
 
+// Declare global ethernet class
+EthernetClass Ethernet;
 
 #endif
 
